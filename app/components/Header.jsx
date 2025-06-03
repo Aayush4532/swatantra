@@ -1,51 +1,83 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { UserButton } from "@clerk/nextjs";
 const HEADER_HEIGHT = 64;
 
-export function Header({ menuOpen, setMenuOpen }) {
+export function Header() {
   return (
     <header
-      className="fixed top-0 left-0 w-full flex items-center justify-between bg-white px-6 z-20"
+      className="fixed top-0 left-0 w-full flex items-center justify-between bg-gray-100 px-8 z-20 transition-height duration-300 border-b border-gray-100"
       style={{ height: HEADER_HEIGHT }}
     >
-      <div className="flex items-center gap-3 min-w-[200px]">
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className={`p-2 rounded-md hover:bg-gray-100 cursor-pointer transition ${
-            menuOpen ? "bg-gray-200 hover:bg-gray-200" : ""
-          }`}
-          aria-label="Toggle sidebar"
+      {/* Logo */}
+      <div className="flex items-center min-w-[180px]">
+        <span
+          className="text-3xl font-extrabold  text-gray-900 tracking-tight select-none"
+          style={{ fontFamily: "fantasy" }}
         >
-          <svg
-            className="h-6 w-6 text-gray-700"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          Swatantra
+        </span>
+      </div>
+
+      {/* Search Bar */}
+      <div className="flex-1 flex justify-center">
+        <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 w-full max-w-xl shadow-sm">
+          <input
+            type="text"
+            placeholder="Search Footages, Clips..."
+            className="bg-transparent flex-1 outline-none text-lg px-2 placeholder-gray-500"
+          />
+          <button className="ml-2 text-white bg-pink-500 hover:bg-pink-600 rounded-full p-2 transition">
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
               strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-        <div className="text-2xl font-bold text-gray-900 flex items-center">
-          <span className="text-orange-500 mr-1">🔥</span>SWATANTRA
+              viewBox="0 0 24 24"
+            >
+              <circle cx="11" cy="11" r="7" stroke="currentColor" />
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-3.5-3.5"
+              />
+            </svg>
+          </button>
         </div>
       </div>
-      <div className="flex-1 flex justify-center">
-        <input
-          type="text"
-          placeholder="Search"
-          className="w-full max-w-md rounded-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm text-gray-700 placeholder-gray-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition"
-        />
-      </div>
-      <div className="min-w-[200px] flex justify-end">
-        <UserButton afterSignOutUrl="/" />
-      </div>
+
+      {/* Navigation Links */}
+      <nav className="flex items-center gap-6 ml-8">
+        <a
+          href="/explore"
+          className="font-semibold text-gray-900 hover:text-pink-500 transition"
+        >
+          Explore
+        </a>
+        <a
+          href="/hire"
+          className="font-semibold text-gray-900 hover:text-pink-500 transition"
+        >
+          Hire a Designer
+        </a>
+        <a
+          href="/jobs"
+          className="font-semibold text-gray-900 hover:text-pink-500 transition"
+        >
+          Find Jobs
+        </a>
+        <a
+          href="/blog"
+          className="font-semibold text-gray-900 hover:text-pink-500 transition"
+        >
+          Blog
+        </a>
+
+        <div className="min-w-[200px] flex justify-end">
+          <UserButton afterSignOutUrl="/" />
+        </div>
+      </nav>
     </header>
   );
 }
