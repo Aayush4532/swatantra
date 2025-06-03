@@ -1,9 +1,16 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 
-const VideoCard = ({ title, views, timeAgo, thumbnail, duration, videoSrc }) => {
+const VideoCard = ({
+  title,
+  views,
+  timeAgo,
+  thumbnail,
+  duration,
+  videoSrc,
+}) => {
   const videoRef = useRef(null);
-  const hoverRef = useRef(false);       // track करता है कि अभी भी hover हो रहा है या नहीं
-  const timeoutRef = useRef(null);     // delayed play के timeout के लिए
+  const hoverRef = useRef(false); // track करता है कि अभी भी hover हो रहा है या नहीं
+  const timeoutRef = useRef(null); // delayed play के timeout के लिए
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -70,11 +77,9 @@ const VideoCard = ({ title, views, timeAgo, thumbnail, duration, videoSrc }) => 
   }, [toggleMute]);
 
   return (
-    <div
-      className="relative rounded overflow-hidden shadow hover:shadow-lg transition duration-200 cursor-pointer bg-white"
-    >
+    <div className="relative rounded-2xl overflow-hidden shadow hover:shadow-lg transition duration-200 cursor-pointer bg-white">
       <div
-        className="relative aspect-video bg-black"
+        className="relative aspect-video bg-black rounded-3xl"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
